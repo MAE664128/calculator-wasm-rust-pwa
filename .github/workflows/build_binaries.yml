@@ -1,0 +1,21 @@
+name: Build binaries
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  windows-msvc-release:
+    name: release windows msvc
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Build
+        run: |
+          cargo build --release
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-msvc.calculator-wasm-rust-pwa.archive.tar.gz
+          path: ./target/release/calculator-wasm-rust-pwa.exe

@@ -1,0 +1,10 @@
+[package]
+version = "0.1.0"
+name = "calculator-wasm-rust-pwa"
+description = "A simple calculator created to demonstrate how to work with web gui on rust."
+authors = ["Matkin Alexandr <mae664128@gmail.com>"]
+edition = "2021"
+rust-version = "1.67.1"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+

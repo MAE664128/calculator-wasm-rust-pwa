@@ -42,6 +42,22 @@ impl CalcApp {
 
 impl eframe::App for CalcApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+        egui::TopBottomPanel::top("screen_panel").show(ctx, |ui| {
+            let expression = self.math_exp.join("");
+            let expression_length = expression.chars().count() as f32;
+            let size_font: f32 = if expression_length <= 22.0 { 25.0 } else {
+                let a = 330.0 / (expression_length / 0.6);
+                if a > 12.0 { a } else { 12.0 }
+            };
+            ui.add_sized(
+                [330.0, 70.0],
+                egui::Label::new(
+                    egui::RichText::new(expression)
+                        .font(egui::FontId::monospace(size_font))
+                ).wrap(true),
+            );
+        });
+
         egui::CentralPanel::default().show(ctx, |ui| {
             keyboard::CalcKeyboard::from_buffer(&mut self.math_exp).show(ui)
         });

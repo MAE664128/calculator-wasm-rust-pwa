@@ -38,16 +38,116 @@ impl CalcApp {
 impl eframe::App for CalcApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
-            ui.label(r#"  
-            Это вымышленный калькулятор.
-
-            Чтобы воспользоваться калькулятором вам необходимо воспользоваться воображением.
-Давайте представим себе любой интерфейс похожий на интерфейс калькулятора и наберите в нем математическое выражение, после чего нажмем на кнопку '='.
-
-
-            Увидели результат, да? - Поздравляю, ваш калькулятор работает хорошо.
-
-            "#);
+            ui.horizontal(|ui| {
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("√").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("C").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("(").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new(")").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("<=").small(),
+                ).clicked() {  };
+            });
+            ui.horizontal(|ui| {
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("sin").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("7").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("8").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("9").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("*").small(),
+                ).clicked() {  };
+            });
+            ui.horizontal(|ui| {
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("cos").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("4").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("5").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("6").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("/").small(),
+                ).clicked() {  };
+            });
+            ui.horizontal(|ui| {
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("tg").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("1").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("2").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("3").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("-").small(),
+                ).clicked() {  };
+            });
+            ui.horizontal(|ui| {
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("ctg").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new(".").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("0").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("=").small(),
+                ).clicked() {  };
+                if ui.add_sized(
+                    [58.0, 48.0],
+                    egui::Button::new("+").small(),
+                ).clicked() {  };
+            });
         });
     }
 }

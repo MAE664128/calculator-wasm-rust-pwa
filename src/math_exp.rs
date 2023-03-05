@@ -269,7 +269,6 @@ impl std::fmt::Display for MathExp {
         let mut o = String::new();
         for token in &self.tokens {
             o.push_str(token.to_string().as_str());
-            o.push(' ');
         }
         o.push_str(self.buffer.as_str());
         write!(

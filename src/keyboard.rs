@@ -1,25 +1,26 @@
 use eframe::egui;
 use eframe::egui::Widget;
+use crate::math_exp;
 
-// TODO в дальнейшем будут заменено на Enum с токенами (Operation и Operand)
-static KEYS: [(&str, &str); 25] = [
-    ("√", "√("), ("C", ""), ("(", "("), (")", ")"), ("<=", ""),
-    ("sin", "sin("), ("7", "7"), ("8", "8"), ("9", "9"), ("*", "*"),
-    ("cos", "cos("), ("4", "4"), ("5", "5"), ("6", "6"), ("/", "/"),
-    ("tg", "tg("), ("1", "1"), ("2", "2"), ("3", "3"), ("-", "-"),
-    ("ctg", "ctg("), (".", "."), ("0", "0"), ("=", ""), ("+", "+")
+
+static KEYS: [&str; 25] = [
+    "√", "C", "(", ")", "<=",
+    "sin", "7", "8", "9", "*",
+    "cos", "4", "5", "6", "/",
+    "tg", "1", "2", "3", "-",
+    "ctg", ".", "0", "=", "+"
 ];
 
 
 pub struct CalcKeyboard<'a> {
-    buffer: &'a mut Vec<String>,
+    buffer: &'a mut math_exp::MathExp,
     pub width: f32,
     pub height: f32,
 }
 
 
 impl<'a> CalcKeyboard<'a> {
-    pub fn from_buffer(buffer: &'a mut Vec<String>) -> Self {
+    pub fn from_buffer(buffer: &'a mut math_exp::MathExp) -> Self {
         Self {
             buffer,
             width: 340.0,
@@ -32,7 +33,7 @@ impl<'a> CalcKeyboard<'a> {
             .num_columns(5)
             .max_col_width(self.width)
             .show(ui, |ui| {
-                for (ind, (title, val)) in KEYS.iter().enumerate() {
+                for (ind, title) in KEYS.iter().enumerate() {
                     if ind % 5 == 0 && ind != 0 {
                         ui.end_row();
                     }
@@ -40,10 +41,9 @@ impl<'a> CalcKeyboard<'a> {
                         match *title {
                             "C" => { self.buffer.clear(); }
                             "<=" => { self.buffer.pop(); }
-                            _ => { self.buffer.push(val.to_string()); }
+                            "=" => { self.buffer.calculate(); }
+                            _ => { self.buffer.add(title); }
                         }
-                        // TODO Далее мы это удалим.
-                        println!("{:?}", self.buffer)
                     };
                 }
             });
@@ -84,11 +84,10 @@ impl Default for CustomKey {
 
 impl Widget for CustomKey {
     fn ui(self, ui: &mut egui::Ui) -> egui::Response {
-        let btn = ui.add_sized(
+        ui.add_sized(
             [self.width, self.height],
             egui::Button::new(self.text).small(),
-        );
-        btn
+        )
     }
 }
 

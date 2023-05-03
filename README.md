@@ -1,5 +1,7 @@
 # Простой калькулятор, созданный для демонстрации того, как работать с веб-интерфейсом на ржавчине.
 
+![Screenshot7](tutorial/img/Screenshot7.png)
+
 ### Инструкция: [тут](tutorial/tutorial.md).
 
 ### Демонстрация: [тут](https://mae664128.github.io/calculator-wasm-rust-pwa/).
